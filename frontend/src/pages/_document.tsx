@@ -3,7 +3,7 @@ import Document, {
   Head,
   Main,
   NextScript,
-  DocumentContext,
+  DocumentContext
 } from 'next/document'
 import { ServerStyleSheet } from 'styled-components'
 
@@ -15,7 +15,7 @@ export default class MyDocument extends Document {
     try {
       ctx.renderPage = () =>
         originalRenderPage({
-          enhanceApp: App => props => sheet.collectStyles(<App {...props} />),
+          enhanceApp: App => props => sheet.collectStyles(<App {...props} />)
         })
 
       const initialProps = await Document.getInitialProps(ctx)
@@ -26,7 +26,7 @@ export default class MyDocument extends Document {
             {initialProps.styles}
             {sheet.getStyleElement()}
           </>
-        ),
+        )
       }
     } finally {
       sheet.seal()
@@ -36,7 +36,13 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html lang='pt-br'>
-        <Head />
+        <Head>
+          <link rel='preconnect' href='https://fonts.gstatic.com' />
+          <link
+            href='https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Ubuntu:wght@300;400;500;700&display=swap'
+            rel='stylesheet'
+          />
+        </Head>
         <body>
           <Main />
           <NextScript />
